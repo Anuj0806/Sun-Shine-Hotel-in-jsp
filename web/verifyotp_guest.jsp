@@ -1,0 +1,58 @@
+<%-- 
+    Document   : verifyotp
+    Created on : 17-Mar-2023, 9:22:12 pm
+    Author     : Jitender
+--%>
+
+<%@page import="javax.swing.JOptionPane"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <%
+            
+            String otp=request.getParameter("username");
+            String otp1=(String)session.getAttribute("user"); 
+            String name=(String)session.getAttribute("name"); 
+            String mobile=(String)session.getAttribute("mobile"); 
+            String area=(String)session.getAttribute("area"); 
+            String email=(String)session.getAttribute("email"); 
+            String password=(String)session.getAttribute("password"); 
+                
+                
+if(otp.equals(otp1)){
+try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_management", "root", "Anuj0806$");
+                String sql = "insert into guest values(?,?,?,?,?)";               
+                PreparedStatement ptst = conn.prepareStatement(sql);               
+                ptst.setString(1, name);                                                            
+                ptst.setString(2, mobile);                              
+                ptst.setString(3, area);
+                ptst.setString(4, email);
+                ptst.setString(5, password);               
+                ptst.executeUpdate();               
+                conn.close();              
+            } catch (Exception e) {                
+            }
+out.println("<script type=\"text/javascript\">"); 
+out.println("alert('Account create Succesfully please Login');"); 
+out.println("location='guest_login_signup_page.html';"); 
+out.println("</script>"); 
+ 
+            }
+            else{
+out.println("<script type=\"text/javascript\">"); 
+out.println("alert('Your OTP is not Matched');"); 
+out.println("location='verifyotp_guest_text.jsp';"); 
+out.println("</script>"); 
+            }
+            %>
+    </body>
+</html>
