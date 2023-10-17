@@ -15,6 +15,7 @@
 <%@page import="javax.mail.internet.MimeMessage"%>
 <%@page import="java.util.Properties"%>
 <%@page import="java.util.Random"%>
+<%@include file="config.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -52,7 +53,7 @@
         Session session = Session.getInstance(proper, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("anuj9896388147@gmail.com", "zdkpfmdqwzhxstkg");
+                return new PasswordAuthentication(emailUsername, emailPassword);
             }
         });
         session.setDebug(true);
@@ -83,8 +84,8 @@
     String mail = request.getParameter("email");
     String password = request.getParameter("password");
     try {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_management", "root", "Anuj0806$");
+        Class.forName(driver);
+        Connection conn = DriverManager.getConnection(url,user,password1);
         String sql = "select email from guest";
         PreparedStatement pst = conn.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
@@ -104,14 +105,14 @@
         out.println("</script>");
     } else {
         arr.clear();
-        String otp1 = String.valueOf(generate(mail));
+//        String otp1 = String.valueOf(generate(mail));
 
         session.setAttribute("name", name);
         session.setAttribute("mobile", mobile);
         session.setAttribute("area", area);
         session.setAttribute("email", mail);
         session.setAttribute("password", password);
-        session.setAttribute("user", otp1);
+//        session.setAttribute("user", otp1);
         session.setAttribute("msg", "OTP is successfully send on your Email");
         response.sendRedirect("verifyotp_guest_text.jsp");
 

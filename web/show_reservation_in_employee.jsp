@@ -1,51 +1,42 @@
 <%@include file="config.jsp" %>
 <html lang="en">
-    <head>    
-        <title>Check Room Status</title>
-        <link rel="icon"  href="hotel-sign.png">      
-        <link rel="stylesheet" href="./css/tables.css">
+    <head>
+        <title>Reservation</title>
+        <link rel="icon"  href="hotel-sign.png">       
+        <link rel="stylesheet" href="./css/tables.css"> 
     </head>
     <body>
         <nav>
             <ul>
                 <li class="logo">Sun Shine Hotel</li>            
-                <li class="items">Room Status</li>                       
+                <li class="items">Reserved Rooms</li>       
                 <li class="btn"><a href="#"><i class="fas fa-bars"></i></a></li>
             </ul>
-        </nav>       
+        </nav>
         <div class="container">
-            <table >
+            <table class="scrolldown" >
                 <thead>
-                    <tr>
-                        <th class="text">Email</th>
-                        <th>Room no</th>
-                        <th>Room Class</th>
-                        <th>Number of Beds</th>				
-                        <th>Floor</th>
-                        <th>AC or Non AC Room </th>
-                        <th>Price</th>
-                        <th>Status</th>
+                    <tr>                            
+                        <th class="text">Room No</th>
+                        <th>Check In Detail</th>
+                        <th>Check Out Detail</th>								
+                        <th>Check Out</th>
                     </tr>
                 </thead>
                 <%
-                    String email = String.valueOf(session.getAttribute("email"));
                     try {
                         Class.forName(driver);
                         Connection con = DriverManager.getConnection(url, user, password1);
-                        String sql = "select * from status where email='" + email + "'";
+                        String sql = "select * from reservation";
                         PreparedStatement pst = con.prepareStatement(sql);
                         ResultSet rs = pst.executeQuery(sql);
                         while (rs.next()) {
                 %>
-                <tr>
+                <tr>                               
                     <td><%=rs.getString(1)%></td>
                     <td><%=rs.getString(2)%></td>
                     <td><%=rs.getString(3)%></td>
-                    <td><%=rs.getString(4)%></td>
-                    <td><%=rs.getString(5)%></td>
-                    <td><%=rs.getString(6)%></td>
-                    <td><%=rs.getString(7)%></td>
-                    <td><%=rs.getString(8)%></td>
+                    <td><a href="check_out.jsp?id=<%=rs.getString(1)%>">To Check Out click</a></td>
                 </tr>                   
                 <%
                         }

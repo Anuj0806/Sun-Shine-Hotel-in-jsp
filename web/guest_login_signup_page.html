@@ -1,217 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
- 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
- 
-  <!-- jQuery CDN Link -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  
-  <style>
-      
-      * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body{
-  font-family: Arial, Helvetica, sans-serif;
-  background-image: url("background.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-}
-/* align items center vertically and horizontally  */
-.container{
-  display: flex;
-  justify-content: center;
-  align-items:center !important;
-  height: 100vh;
-}
-.form{
-  width: 350px;
-  height: 450px;
-  background-color: rgba(41, 39, 39, 0.3);
-  box-shadow: 0 5px 30px black;
-}
-.btn button {
-  padding: 3px;
-  margin: 30px 0px 40px 30px;
-  border-style: none;
-  background-color: transparent;
-  color: beige;
-  font-size: 18px;
-  font-weight: 550;
-}
-.formGroup{
-  display: flex;
-  justify-content: center;
-}
-.formGroup input{
-  border: none;
-  width: 80%;
-  border-bottom: 2px solid white;
-  padding: 10px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  font-weight: bold;
-  background-color: transparent;
-  color: white;
-}
-input:focus {
-  outline: none !important;
-  border-bottom: 2px solid rgb(91, 243, 131);
-  font-size: 17px;
-  font-weight: bold;
-  color: white;
-}
-::placeholder {
-  color: white;
-}
-.checkBox{
-  display: flex;
-  justify-content: center;
-  margin: 16px!important;
-}
- 
-#checkbox{
-  margin-right: 10px;
-  height: 15px;
-  width: 15px;
-}
-.text{
-  color: rgb(199, 197, 197);
-  font-size: 13px;
-}
-.btn2{
-  padding: 10px;
-  width: 150px;
-  border-radius: 20px;
-  background-color: rgb(10, 136, 43);
-  border-style: none;
-  color: white;
-  font-weight: 600;
-  margin-top: 15px;
-}
-.btn2:hover{
-  background-color: rgba(10, 136, 43, 0.5);
-}
-.btn button:hover{
-  border-bottom: 2px solid rgb(91, 243, 131);
-}
- 
-/* hide signup form */
-.login{
-  display: none;
-}
- 
-/* Login form code */
-.login{
-  margin-top: 40px;
-}
-.login .checkBox{
-  margin-top: 30px !important;
-}
-.btn1 {
-    padding: 7px;
-    width: 150px;
-    border-radius: 20px;
-    background-color: rgb(10, 136, 43);
-    border-style: none;
-    color: white;
-    font-weight: 600;
-    margin-top: 30px;
-}
-  </style>
-  <script>
-           
- $(function() {
-$('.loginBtn').click(
-        function(e){
-  $('.login').show();
-  $('.signUp').hide();
-  $('.loginBtn').css({'border-bottom' : '2px solid #ff4141'});
-  $('.signUpBtn').css({'border-style' : 'none'});
-  e.preventDefault();
-});
- 
- 
-/* Show sign Up form on button click */
- 
-$('.signUpBtn').click(function(e){
-  $('.login').hide();
-  $('.signUp').show();
-  /* border bottom on button click */
-  $('.signUpBtn').css({'border-bottom' : '2px solid #ff4141'});
-   /* remove border after click */
-   $('.loginBtn').css({'border-style' : 'none'});
-   e.preventDefault();
-});
-});
-
-
-
-      
-  </script>
- <link rel="icon"  href="hotel-sign.png">
-  
-  <title>Guest Login Page</title>
-</head>
- 
-<body>
-  <div class="container">
-    <div class="form">
-      <div class="btn">
-        <button class="signUpBtn">SIGN UP</button>
-        <button class="loginBtn">LOG IN</button>
-      </div>
-        <form class="signUp" action="guestregister.jsp" method="post">
-        <div class="formGroup">
-            <input type="text" name="name" pattern="[A-Z]{1}[a-z]{3,}" title="Name character must be greater than 3. First alphabat must be capital letter" id="userName" placeholder="User Name" required autocomplete="off">
-        </div>
-          <div class="formGroup">
-              <input type="tel" placeholder="Phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" title="Phone no contain 10 Number" name="phone" required autocomplete="off">
-        </div>
-        <div class="formGroup">
-            <input type="text" placeholder="Address" name="address" required autocomplete="off">
-        </div>
-        <div class="formGroup">
-            <input type="email" id="password" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid Email" placeholder="Email" required autocomplete="off">
-        </div>
-        <div class="formGroup">
-            <input type="password" id="confirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" name="password" placeholder="Password" required autocomplete="off">
-        </div>
-           <div class="formGroup">
-          <button class="btn2">Verify OTP</button>
-           </div>
-      </form> 
-        
-      <!------ Login Form -------- -->
-      <form class="login" action="guestlogin.jsp" method="post">
-        
-        <div class="formGroup">
-          <input type="email" placeholder="Email ID" name="email" required autocomplete="off">
-        </div>
-        <div class="formGroup">
-            <input type="password" id="password" name="password" placeholder="Password" required autocomplete="off">
-         
-        </div>
-          
-         
-         <div class="formGroup">
-          <button class="btn2">Log In</button>
-           </div>
-          <div class="formGroup">
-              <a href="forgot_password_guest.jsp" class="btn1" >Forgot Password</a>
-          </div>
-      </form>
- 
-    </div>
-  </div>
- 
-    
-</body>
- 
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Guest Login</title>
+        <link rel="stylesheet" href="./css/login.css">
+        <link rel="icon"  href="hotel-sign.png">
+    </head>
+    <style>
+        body {
+            background: #f0f4f3;
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+    <body>
+        <nav>
+            <ul>
+                <li class="logo">Sun Shine Hotel</li>            
+                <li class="items">Login Customer</li>
+                <li class="items"><a href="index.jsp">Back</a></li>   
+                <li class="btn"><a href="#"><i class="fas fa-bars"></i></a></li>
+            </ul>
+        </nav>
+        <div id="container">
+            <div id="cover">
+                <h1 class="sign-up">Hello, User</h1>
+                <p class="sign-up">Enter your Details<br> and Sign Up into system</p>
+                <a class="button sign-up" href="#cover">Login</a>
+                <h1 class="sign-in">Customer Login</h1>
+                <p class="sign-in">Enter your Details<br> and login into system</p>
+                <br>
+                <a class="button sub sign-in" style="width: 24%;margin-left: 27%;" href="#">Customer Sign Up</a>
+            </div>
+            <div id="login">
+                <h1>SIGN UP</h1>
+                <form method="post" action="guestregister.jsp">
+                    <input type="text" placeholder="Name" name="name" pattern="[A-Z]{1}[a-z]{3,}" title="Name character must be greater than 3. First alphabat must be capital letter" required="" autocomplete="off"><br>
+                    <input type="text" placeholder="Phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" title="Phone no contain 10 Number" name="phone" required=""  autocomplete="off"><br>
+                    <input type="text" placeholder="Address" name="address" required="" autocomplete="off"><br>
+                    <input type="email" placeholder="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid Email" required=""  autocomplete="off"><br>
+                    <input type="password" placeholder="password" required="" id="confirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" name="password" autocomplete="off"><br>
+                    <input class="submit-btn" type="submit" value="Send OTP">
+                </form>
+            </div>
+            <!-- Register Box -->
+            <div id="register">
+                <h1>Customer Login</h1>
+                <form method="post" action="guestlogin.jsp">
+                    <input type="email" placeholder="Enter Your Email" name="email" required="" autocomplete="off"><br>
+                    <input type="password" required="" name="password" placeholder="Password" autocomplete="off"><br>
+                    <input class="submit-btn" type="submit" value="Login In">
+                    <a href="forgot_password_guest.jsp"><button type="button" class="submit-btn">Forgot Passowrd</button></a>
+                </form>
+            </div>
+        </div> 
+        <footer>
+            <p style="margin: 0px" >&copy; 2023 Sun Shine Hotels</p>
+        </footer>
+    </body>
 </html>

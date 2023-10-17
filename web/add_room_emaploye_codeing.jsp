@@ -1,18 +1,11 @@
-
-
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.util.ArrayList"%>
-
+<%@include file="config.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+   <body>
        
         <%!
          ArrayList arr = new ArrayList();
@@ -29,8 +22,8 @@
           String price=request.getParameter("price");
          
           try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_management", "root", "Anuj0806$");
+                Class.forName(driver);
+                java.sql.Connection conn = DriverManager.getConnection(url,user, password1);
                 String sql = "select room_no from duplicateroom";
                 PreparedStatement pst = conn.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
@@ -46,8 +39,8 @@
         //=====================================================================         
           
           try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_management", "root", "Anuj0806$");
+                Class.forName(driver);
+                java.sql.Connection conn = DriverManager.getConnection(url, user, password1);
                 String sql = "select room_no from demoroom";
                 PreparedStatement pst = conn.prepareStatement(sql);
                 ResultSet rs = pst.executeQuery();
@@ -80,8 +73,8 @@
                     else
                     {
  try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_management", "root", "Anuj0806$");
+                Class.forName(driver);
+                java.sql.Connection con = DriverManager.getConnection(url,user, password1);
                 String sql1 = "insert into room values(?,?,?,?,?,?)";               
                 PreparedStatement ptst = con.prepareStatement(sql1);
                 ptst.setString(1, no);

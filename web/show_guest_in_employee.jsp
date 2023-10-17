@@ -1,38 +1,40 @@
+
 <%@include file="config.jsp" %>
+<!DOCTYPE html>
 <html lang="en">
-    <head>    
-        <title>Check Room Status</title>
-        <link rel="icon"  href="hotel-sign.png">      
-        <link rel="stylesheet" href="./css/tables.css">
+    <head>
+        <!-- Design by foolishdeveloper.com -->
+        <title>Guest Detail</title>
+        <link rel="icon"  href="hotel-sign.png">
+        <link rel="stylesheet" href="./css/tables.css">         
     </head>
     <body>
         <nav>
             <ul>
                 <li class="logo">Sun Shine Hotel</li>            
-                <li class="items">Room Status</li>                       
+                <li class="items">All Room Details</li>       
+
                 <li class="btn"><a href="#"><i class="fas fa-bars"></i></a></li>
             </ul>
-        </nav>       
+        </nav>
         <div class="container">
             <table >
                 <thead>
-                    <tr>
-                        <th class="text">Email</th>
-                        <th>Room no</th>
-                        <th>Room Class</th>
-                        <th>Number of Beds</th>				
-                        <th>Floor</th>
-                        <th>AC or Non AC Room </th>
-                        <th>Price</th>
-                        <th>Status</th>
+                    <tr>                            
+                        <th class="text">Name</th>
+                        <th>Phone</th>
+                        <th>Address</th>				
+                        <th>Email</th>
+                        <th>Password</th>
+
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <%
-                    String email = String.valueOf(session.getAttribute("email"));
                     try {
                         Class.forName(driver);
                         Connection con = DriverManager.getConnection(url, user, password1);
-                        String sql = "select * from status where email='" + email + "'";
+                        String sql = "select * from guest";
                         PreparedStatement pst = con.prepareStatement(sql);
                         ResultSet rs = pst.executeQuery(sql);
                         while (rs.next()) {
@@ -43,9 +45,7 @@
                     <td><%=rs.getString(3)%></td>
                     <td><%=rs.getString(4)%></td>
                     <td><%=rs.getString(5)%></td>
-                    <td><%=rs.getString(6)%></td>
-                    <td><%=rs.getString(7)%></td>
-                    <td><%=rs.getString(8)%></td>
+                    <td><a href="delete_guest_in_employee.jsp?id=<%=rs.getString(4)%>">Delete</a></td>
                 </tr>                   
                 <%
                         }

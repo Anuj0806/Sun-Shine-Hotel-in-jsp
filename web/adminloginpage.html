@@ -1,178 +1,30 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Design by foolishdeveloper.com -->
-  <title>Admin Page</title>
- <link rel="icon"  href="hotel-sign.png">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    
-     <style>
-         
-         .topnav {
-    padding: 17px;
-    overflow: hidden;
-    background-color: rgb(28 28 61);
-    padding-right: 30px;
-    margin-top: -399px;
-    margin-left: 51px;
-  }
-  
-  .topnav a {
-    float: left;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 30px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    /* padding-right: 30px; */
-    
-  }
-  .topnav div.admin a{
-  
- 
-  font-family:Georgia, 'Times New Roman', Times, serif;
-  font-size: 22px;
-   
-  }
-  .topnav div a.admin1{
-    margin-left: 36%;
-    margin-right: auto;
-    margin-top: 0px;
-  }
-  
-  
-  .topnav a:hover {
-    background-color: #1113bb;
-    color: black;
-    border-radius: 78px;
-
-  }
-  .topnav a.active:hover{
-    color:black;
-  }
-  .topnav a.raj{
-    padding-right: 60px;
-    font-size: 40px;
-  }
-  .topnav a.active {
-    /* background-color: #04AA6D; */
-    color: white;
-    border-radius: 78px;
-    padding-right: 30px;
-    }
-    .active{
-      margin-left: px;
-    }
-
-
-         
-     </style>
-     <style>
-         
-         html,
-body {
-	height: 100%;
-}
-
-body {
-     background: url('https://wallpapercave.com/wp/wp8521497.jpg');
-	 background-size: 100%;
-                position: fixed;
-                top: 400px;
-                right: 60px;
-                left: 0;
-                font-family: Arial, Helvetica, sans-serif;
-               
-}
-
-.container {
-	position: fixed;
-	top: 10%;
-	left: 17%;
-	transform: translate(-50%, -50%);
-}
-
-table {
-    position: fixed; 
-	width: 900px;
-	border-collapse: collapse;
-	overflow: scroll;
-	box-shadow: 0 0 20px rgba(0,0,0,0.1);
-}
-
-th,
-td {
-       margin: 12px;
-	padding: 20px;
-	background-color: rgba(255,255,255,0.2);
-	color: #fff;
-}
-
-th {
-	text-align: left;
-}
-th text{
-	text-align: left;
-        margin-right: 10px;
-}
-thead {
-	th {
-		background-color: #55608f;
-	}
-}
-
-tbody {
-	tr {
-		&:hover {
-			background-color: rgba(255,255,255,0.3);
-		}
-	}
-	td {
-		position: relative;
-		&:hover {
-			&:before {
-				content: "";
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: -9999px;
-				bottom: -9999px;
-				background-color: rgba(255,255,255,0.2);
-				z-index: -1;
-			}
-		}
-	}
-}
-
-         
-     </style>
-     <style>
-         .container  {
-	position: absolute;
-	top: 17%;
-	left: 76%;
-	transform: translate(-50%, -50%);
-}
-     </style>
-        
-</head>
-<body>
-    <div class="topnav">
-        <a>Sun Shine Hotel</a>       
-        <div class="admin">
-            
-            <a class="admin1" href="addemployee.jsp">Add Employee</a>  
-            <a  href="adminloginpage.jsp">Employee Detail</a>  
-            <a  href="index.html">Log Out</a>  
-        </div>
-    </div>
-    
-    
-   
-    
-   
-</body>
+    <head>
+        <title>Sun Shine Hotel</title>
+        <link rel="icon"  href="hotel-sign.png">       
+        <link rel="stylesheet" href="./css/home.css"> 
+    </head>    
+    <body>        
+        <nav style="background: #2c94b3;">
+            <ul style="margin-bottom: 0px;">
+                <li class="logo">Sun Shine Hotel</li>
+                <li class="items"><a href="addemployee.jsp">Add Employee</a></li>
+                <li class="items"><a href="A_EmployeeDetail.jsp">Employee Details</a></li>       
+                        <li class="items"><a href="index.jsp">Log Out</a> </li>
+                <li class="btn"><a href="#"><i class="fas fa-bars"></i></a></li>
+            </ul>
+        </nav>
+        <div  class="imageadmin"></div>
+        <footer >
+            <p style="margin: 0px;">&copy; 2023 Sun Shine Hotels</p>
+        </footer>
+        <script>
+            $(document).ready(function () {
+                $('.btn').click(function () {
+                    $('.items').toggleClass("show");
+                    $('ul li').toggleClass("hide");
+                });
+            });
+        </script>
+    </body>
 </html>

@@ -1,14 +1,4 @@
-<%-- 
-    Document   : check_out
-    Created on : 26-Mar-2023, 2:32:50 pm
-    Author     : Jitender
---%>
-
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@include file="config.jsp" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,12 +6,11 @@
     </head>
     <body>
         <%
-        String room=request.getParameter("id");
-         try {
-                
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_management", "root", "Anuj0806$");
-                String sql = "select room_no,class,beds,floor,ac_nonac,price from demoroom where room_no=?";
+            String room = request.getParameter("id");
+            try {
+                Class.forName(driver);
+                java.sql.Connection conn = DriverManager.getConnection(url, user, password1);
+                String sql = "select * from demoroom where room_no=?";
                 PreparedStatement pst = conn.prepareStatement(sql);
                 pst.setString(1, room);
                 ResultSet rs = pst.executeQuery();
@@ -32,60 +21,61 @@
                     String floor = rs.getString("floor");
                     String nonac = rs.getString("ac_nonac");
                     String prize = rs.getString("price");
+                    String description = rs.getString("Description");
+                    Blob photo = rs.getBlob("photo");
                     try {
-                        Class.forName("com.mysql.cj.jdbc.Driver");
-                        java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_management", "root", "Anuj0806$");
-                        String sql1 = "insert into room values(?,?,?,?,?,?)";
-                        PreparedStatement ptst = conn.prepareStatement(sql1);
+                        Class.forName(driver);
+                        java.sql.Connection con = DriverManager.getConnection(url, user, password1);
+                        String sql1 = "insert into room values(?,?,?,?,?,?,?,?)";
+                        PreparedStatement ptst = con.prepareStatement(sql1);
                         ptst.setString(1, room1);
                         ptst.setString(2, class1);
                         ptst.setString(3, beds);
                         ptst.setString(4, floor);
                         ptst.setString(5, nonac);
                         ptst.setString(6, prize);
+                        ptst.setString(7, description);
+                        ptst.setBlob(8, photo);
                         ptst.executeUpdate();
-                       
-                        conn.close();
+                        con.close();
                     } catch (Exception e) {
-                       
+                        out.print(e);
                     }
-                     } else {
-                 //   JOptionPane.showMessageDialog(null, "No Guest Found");
+                } else {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('No Guest Found');");
+                    out.println("location='employee_login_page.html';");
+                    out.println("</script>");
                 }
-                      } catch (Exception e) {
-               
+                conn.close();
+            } catch (Exception e) {
+                out.print(e);
             }
-            
-
- try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_management", "root", "Anuj0806$");
+            try {
+                Class.forName(driver);
+                java.sql.Connection con = DriverManager.getConnection(url, user, password1);
                 String sql = "delete from reservation where room_no=?";
                 PreparedStatement pst = con.prepareStatement(sql);
                 pst.setString(1, room);
                 pst.execute();
-                //JOptionPane.showMessageDialog(this, "Data deleted sucessfully");
-
             } catch (Exception e) {
-                //JOptionPane.showMessageDialog(this, e);
+                out.print(e);
             }
             //===========================================================================================================
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_management", "root", "Anuj0806$");
+                Class.forName(driver);
+                java.sql.Connection con = DriverManager.getConnection(url, user, password1);
                 String sql = "delete from demoroom where room_no=?";
                 PreparedStatement pst = con.prepareStatement(sql);
                 pst.setString(1, room);
                 pst.execute();
-                //JOptionPane.showMessageDialog(this, "You sucessfully Checked Out");
-
             } catch (Exception e) {
-               // JOptionPane.showMessageDialog(this, e);
+                out.print(e);
             }
-            out.println("<script type=\"text/javascript\">"); 
-                out.println("alert('Check Out Sucessfully');"); 
-                out.println("location='employee_login_page.html';"); 
-                out.println("</script>");
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Check Out Sucessfully');");
+            out.println("location='employee_login_page.html';");
+            out.println("</script>");
         %>
     </body>
 </html>
