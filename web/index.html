@@ -1,4 +1,4 @@
-<%@include file="config.jsp" %>
+
 <html lang="en">
     <head>
         <title>Sun Shine Hotel</title>
@@ -26,31 +26,7 @@
                 <li class="btn"><a href="#"><i class="fas fa-bars"></i></a></li>
             </ul>
         </nav>
-        <%   try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection(url, user, password1);
-                PreparedStatement ps = con.prepareStatement("select * from room order by room_no asc");
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-        %>       
-
-        <div class="card" style="width: 18rem;">                              
-            <img class="card-img-top" src="imageServlet?id=<%=rs.getString("room_no")%>" height="150" width="200" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Room No.&nbsp;<%=rs.getString("room_no")%></h5>
-                <p class="card-text"><%=rs.getString("Description")%></p>
-                <a href="guest_login_signup_page.html" onclick="welcome()" class="btn btn-primary">Book Room</a>
-            </div>
-        </div>
-        <%
-                }
-                con.close();
-                rs.close();
-                ps.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        %>
+      
         <div  id="aboutSection" class="container">
             <h1>About Us</h1>
             <p>We are a hotel management company that specializes in managing luxury hotels and resorts. Our team is composed of experienced professionals who are dedicated to providing the highest level of service to our clients.</p>
