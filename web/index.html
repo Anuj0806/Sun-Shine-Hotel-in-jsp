@@ -1,4 +1,3 @@
-<%@include file="config.jsp" %>
 <html lang="en">
     <head>
         <title>Sun Shine Hotel</title>
@@ -30,31 +29,14 @@
             </ul>
         </nav>
         <div>
-            <%   try {
-                    Class.forName("com.mysql.jdbc.Driver");
-                    Connection con = DriverManager.getConnection(url, user, password1);
-                    PreparedStatement ps = con.prepareStatement("select * from room order by room_no asc");
-                    ResultSet rs = ps.executeQuery();
-                    while (rs.next()) {
-            %>       
-
+        
             <div class="card" style="width: 18rem;">                              
-                <img class="card-img-top" src="imageServlet?id=<%=rs.getString("room_no")%>" height="150" width="200" alt="Card image cap">
-                <div class="card-body">
-                    <!--<h5 class="card-title">Room No.&nbsp;<%=rs.getString("room_no")%></h5>-->
-                    <p class="card-text"><%=rs.getString("Description")%></p>
+                <img class="card-img-top" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAHYAtQMBIgACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAADBAACBQEGB//EAEUQAAEDAgMFBAcFBAcJAAAAAAEAAgMEERIhMQUTQVFhBiJxgRQjMnKRobFSksHR4RVzsvAkMzRCYoLxFiVUY3SEk6LC/8QAGQEAAwEBAQAAAAAAAAAAAAAAAAECAwQF/8QAIhEAAgICAgIDAQEAAAAAAAAAAAECEQMhEjEiQRNRYTIE/9oADAMBAAIRAxEAPwD2VIBhCcwtc0teA5p1B0SNK7ujwTYcrZmZ9bQmK8kN3R8W8W/okwbrdD7JKrog+8kAAdxZwPgsZR9o1jP7M1wVCxFsQS1wIcNQeC7ZQaFcNP6MbiQVAdkRbCR+aoG3RMCgFkAVDFCxGbZWsCgCkbYNxIJGyb3LdlpyHO6oGZI2ELrQmADAquYmihlt0COUwgAf6QJD3e4GW163VAxXIsux3t3xYpgRrFdrFZoCdo6R9S7DG251J4DxRYgEMDnOAa0kk5AL0OztlNhDZqmxdqG8Gq+zoIqYSucAXRuLS7n+iV2pthkN4xm+3sj+clQjQq65kTSA5oAGZJtZeZrtrOlJbT8RnIfwCy9pbSvnVSe7E3O/gOKyTNWbQeYqeN4Z/ebHrb/EdAECk6Qerr6eGYtllJk1dYFx87aKLQoOyLnRH0qdsLgfYibi+JP8+Ki14Mx+WI1QzRzQtfDI17ftNNwmw/JYdFCxleJmxG7oyMbeB6+S1cazT0aOOxgPXQ9L41YPRYUWqIWTtubNeNHfms+VjoXWkFj9VoiRBqrSx4TnZS0ik2hMviwNwl2LPFfTpZVxN5qbggmwVXMw8FnZoXxDmiOfH3cBdp3sQ49Eu1oJRd0bXsUWBbGOasHt5oNrIjIy7Rt07AI90WI7tzizhiGapiHNQxluoso1qYHQRzVnBpeRFiLb5XFirtiuPZTEAaw3ICVgWpKFzwZJiI4m6k8TyHMpTa+3mwskpKBuGJjdeLsi7P4LvafaB/ZsEUbiLTDQ8F5UG80wPI/wv/NRKWyox+z3bqp88MjaeQtc4BwPPILzO0nVLCyOI2e9xDnEXI0z+ae2LPvJGt/5DD8gmdpuo4xHJVtccBOENBJJtfh0C0jtGUtMw6XZkU+04Wu3ror+ukBJOh1K9GTS0lKG7uKCFmlyA0dT16rGftapn9VRQiEWOEWDnHK+mg+aBA2okZLU+gyTvv6uSV92tyz1FvhZUkY5XFPZuQ1bZWY2Y2xn2HFhaHDmOY6qJGnqKyWEPrRZxccDbABreWXW6i02OO1dGUK98O1IIwXCB4c2QObYNdlhdc6jgtprsQuCCvO15kfMGDBMwDS3s9FyHf0+cQkj6MdcfAhcfzcZNM6/i5RTPSldBWVTbVs3DVh+LgWx8Ouabj2hSSODWy952QBaQVoskWZvG12OYlDmL9VRdvp4qyaCsYhVEaYYclSXNKihWKMY045o3aXBsVd0vd1QkAu5vfTtI0WSJddyagkwhNIGGqWhLRtzRpJMQQ2aoa2JMcY0YUvMbFHa7JLTnVJoaZhbWkMj2sPB4KQYP6TP+7P8Lk5WZ1J494JaMXlqnHiHj+JYtbNU9Gr2dN5h/wBMz8Efb59SOkn/AMlA7Nj1uf8AwzPqFfb7vUO98/RdGPown2KbOYX1UVpDG7Oz8WHD3edsls1M9HLI6Gaus1rTgLRYNJHPj8lhQPwkuxuZYe0Bex807s1lLT1HrWvdMBduX0HHhxQlZhmSsfqt1GYY4ntexkTWh3NdQ6ruSjutGJodYNt8lEy4fyjyVdIRVm8J0yIsbqMmdl6mQeH+qFUS09RUb2GptdovnxVgDlhqx95eTkl5Oj1IR8UPtcXDMS/H9VYOLSCN6CNOiHFitY1GfimoKeaR8djK6MkXIBsQrhb6FKl2VZUVT3hkUspcdAQM1qUUkuAMqMe8uTdwFvkrS01HRj0hwc0MzvicfkuR1kM7rxOcSOJaR9V2Qi49nLKSfQ605LjzkuMdcLj9FqZmN2grZqLZk9RTkCRgBBcL8QF48drdrHV8P/iXpu1uWwqs/wCEfUL5w2eNouTfOy0x01sUj1EHafaTnjG6IjpGAnB2qrML2Njj3tyWm2QHDxXjxWNbiLcz/d5eaoyuc2QuwMsRnY5rpj8aW0cuVZm/Do+gdmtvVW0q2SnqbXEbn3DAB7QAHzXqIyvnXYCUP2zUlrif6OTYm5Heavoka583Hn4m+HlwXLsYDskKU3BVkOTQrI1RiVGdS7xS0A7kx4nF9XfmmZc6k+IQaXOPxB/n5rJrZojU7OD1v/bt+qrt4+qPvu/BX7ODvn9w3+Ioe3xeMAcZH/ULfGtIxmB2bAamYRsdhcQSCjimnFEyqsX4dMD7EAFA2aAZLl2EBp/BapojEC1lZFG1mbHb0ZHwKcV+nPmlFPYhTSb6Le3d33EkO1BvnqomWRbtjY3ytcWZAg4hbXXzUQ+zaD8UeRpooQMoZPgPzTrBEM9xJ5W/NDp56RoyilJ95blNs187GvxNjY4AjC0k2PjkvJjjc+j0ZTUewNHQPqYxKGRxsJOTjnYdAmqus/Z9PHTxhr5wOWTR1TbsNBTNgiu9+ouMxfiVgzxvEjnSNddxvc8V3RxqC12c0puT2EkraqqaWSubgOrWttdHpW4dEvG3TJOxNI4FWiR2I91R1RC1xa94BGqrGCRoUlVRkTvc8WGWZ8FQgtaIqiFzGvZY814hvYJjb/7wJaTcnAMvmvXY4rW3sd/eCrLVU0Nt7UwsvpikAQtexM8oewjQcq0OHAgEK3+wkdhetceeC2XxXpP2hQk/2yD7wRo6qmee5Uwm2vrAqt/Yq/DM7O9n4Nj1bqptRI4yRYHMkIyBIPDwXpxUQN/vrOMkIcbzRj/MOqszBKbRva88mm6TV+ws1A4OFxohycUSJjt23I6DgqSMdY5H4KWMxJP7Q89R9UKjHq29QT9ESYESSZHUKtJmxtvsn6hQuy/Rq9nhZ7/3TR/7FB2/lGz3n/gmtge1J0YPqUr2h/q2+8/6hdGMxn2ZsdRHC0FwJvbT3gE5NVRytsHG/G4WdHQzVMbC2J7m21GXLmrOppID65krG83g2+KhP0cH+2+WjZoQ404c52Ikkk881F3ZgDqCJzHAg3zB1zUWh14ZJY0jLi2ZTt1cR0vdarKrdxtZG6zWgAW5LH3jsWaK2QnPiuWMYw/k65Ny7HpKkpSSoOfeQnP5oD35p2KjSoqcysxtkJz0PBacVK7K7kl2YOMVDCNC06c/9Anto7UipHGGMb2bQtaMm9D16KkFfQyyns3I+ZSlbs6WobhZPgB1s1YD55ZnvnnD2z2ILi85Dy08l30p8jQWzCwGEgScf5I+KLQ+DH3bBlANq2W/uLw+1dhbfpJ3EU1PWXJIkbbEepDivUVVUAWuJc1rAAASQSTwDtD4/VYc+0po3dyaQlgDQS7S979AjSHTMX0LtALj9luFtfVtTtH2f29Vy7uVsNMOJeGn5C6cbX1pIaHOkaD3u+cgRbMg9SiwbVqKiQFk8jRazi2/nrwvbNFoNno6Xs/LHBHG+vmcWNsXYBmrwwCirTEKqR7mtBILcs0jTbSMU8L2zue1jgHxkk93ic9cvojdpBJSbUiq2/1crQ2/Ij9EOkrJpm42ssPYJ81HVOLLd/NZ1NO2eMPb5jkmAUyReqoxM7Ew4Nb5Xuh09E6FoGMOIFtLXTwcOICsMPJCSFbLbFicySbE0jui3VKbew4Y8X23ZeaaxYDcZWWDt6pHpkceL2WXPiSf0VuXGNoSXJhop8NrOt0CYZXPaPaKxo5QeKLvbDX5rFSNHE1htFw4hRYxlF9VFfyC4ml6LBaxc8nxCuylhPF/xSe/JN0aOY8dOikA76Snto77yC6ipz9v7y66U2yQjLlmpZQ3Qn0COZlMXDekFztTly5Kjo43uxOaSdRdxy+aVMxv0U3+hvlZLkFDT4oX+1E0+ZUhhp4QWxRhoOoBOfzSnpJvldc9KTsdD0kUMxBkbe2neIS0uy9nS+1TN8nOH4oYqSeS6KkdLo5Co6zYmy43B0dKGkaYXuFvmrN2Ts1r8baRgda17n81Q1BB6LvpOWiLChltLTMZgbEA3lclWrY462KKOobibELMsSLacvBKGpNtCVz0m6d6Cg1LTx0jvVySW+yTcJkT5cFnmo8fiuifoPNFio0RMERsnQhZrahFbUN4kXTsVDskzW2xXAPHgsut2PHW1O/bVPjJFi0DEP0Tbahp7pF2ngRkUF8nor2YH3icbC59k8AfwQ3YI5F2fjA/tkp/ygIp2HEBnVTfBqaZOAMV8iuvqhZCigbZmSbEjLsqp/mwKJp9UCcyoqpE2zzrKhzRmXE+KKyVxsMTs+qiiksO14LR7WY5obznlpfioopY0UI0LVV5w/ooopKKY76F1xzKhdhdkXZdVFEgOukNha/3iumQjME294riiAL70kGxcPMqpmNr3d95cUVATfOOjnDPmuGZxIsSoomIjpXhxFzrlmutkPM/FRRAFhI7gTfqrCWT7SiiBBWSvxWyOeVwjXMrHRPa0tcLEDJRRUhA6CrkdTMBzdzKJJVPzBtcdFFFSBiElW/Fll5LiiiCT//Z" height="150" width="200" alt="Card image cap">
+                <div class="card-body">                  
+                    <p class="card-text">This the Sample Card</p>
                     <a href="guest_login_signup_page.html#cover" onclick="welcome()" class="btn btn-primary">Book Room</a>
                 </div>
             </div>
-            <%
-                    }
-                    con.close();
-                    rs.close();
-                    ps.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            %>
         </div>
         <div class="container" >
             <div  id="aboutSection" >
